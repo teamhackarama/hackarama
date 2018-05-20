@@ -37,6 +37,9 @@ exports.handler = (event, context, callback) => {
             },
             'FeedbackLocation': {
                 S: 'Pizza Hut'
+            },
+            'Timestamp' : {
+                S: Math.floor(Date.now() / 1000).toString()
             }
         }
     };
