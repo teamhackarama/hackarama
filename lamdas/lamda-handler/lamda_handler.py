@@ -54,10 +54,6 @@ def handle_session_end_request():
         card_title, speech_output, None, should_end_session))
 
 
-def create_favorite_color_attributes(favorite_color):
-    return {"favoriteColor": favorite_color}
-
-
 def process_feedback(intent, session):
     card_title = intent['name']
     session_attributes = {}
@@ -122,21 +118,23 @@ def on_intent(intent_request, session):
         raise ValueError("Invalid intent")
 
 
-def on_session_ended(session_ended_request, session):
-    print("on_session_ended requestId=" + session_ended_request['requestId'] +
-          ", sessionId=" + session['sessionId'])
+def on_session_ended(request, session):
+    print("on_session_ended requestId=" + request['requestId'] + ", sessionId=" + session['sessionId'])
 
 
 # --------------- Main handler ------------------
 
 def lambda_handler(event, context):
-    if event['session']['new']:
-        on_session_started({'requestId': event['request']['requestId']},
-                           event['session'])
+    request = event['request']
+    session = event['session']
+    requestType = request['type']
 
-    if event['request']['type'] == "LaunchRequest":
-        return on_launch(event['request'], event['session'])
-    elif event['request']['type'] == "IntentRequest":
-        return on_intent(event['request'], event['session'])
-    elif event['request']['type'] == "SessionEndedRequest":
-        return on_session_ended(event['request'], event['session'])
+    if event['session']['new']:
+        on_session_started({'requestId': request['requestId']}, session)
+
+    if requestType == "LaunchRequest":
+        return on_launch(request, session)
+    elif requestType == "IntentRequest":
+        return on_intent(request, session)
+    elif requestType == "SessionEndedRequest":
+        return on_session_ended(request, session)
