@@ -11,7 +11,7 @@ We used a serverless architecture with 4 micro services:
 - AWS Lambda for all hosting and deployment. We used Dotnet Core Lambda, Python Lambda, Node.js Lambda.
 - Amazon Dynamo DB for storing the data
 - Microsoft.ML to detect the sentiment of the feedback using Yelp dataset.
-- Angular 6 for the Web Dashboard
+- Angular 6 for the Web Dashboard, with Chart.js and D3 for graphics. 
 - Alexa Skills to parse the intents. The word slots are extracted from Yelp datasets, to capture the free form feedback.
 
 Live Working Demo
