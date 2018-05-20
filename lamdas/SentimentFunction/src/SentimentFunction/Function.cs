@@ -11,6 +11,7 @@ using Microsoft.ML;
 using System.Net.Http;
 using System.Text;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -41,8 +42,9 @@ namespace SentimentFunction
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string FunctionHandler(string input, ILambdaContext context)
+        public string FunctionHandler(JObject jObjectInput, ILambdaContext context)
         {
+            string input = jObjectInput["input"].ToObject<string>();
             PredictionModel<SentimentData, SentimentPrediction> model =
                 PredictionModel.ReadAsync<SentimentData, SentimentPrediction>(modelPath).Result;
 
