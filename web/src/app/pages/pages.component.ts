@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
       <router-outlet></router-outlet>
     </app-layout>
   `,
+  styles: [':host {background-color: #eee;}']
 })
 export class PagesComponent {
 }
