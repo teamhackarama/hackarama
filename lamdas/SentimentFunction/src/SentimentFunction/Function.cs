@@ -32,7 +32,7 @@ namespace SentimentFunction
 
     public class Function
     {
-        const string modelPath = @".\models\imdb_trained";
+        const string modelPath = @"models/imdb_trained";
 
         /// <summary>
         /// A simple function that takes a string and does a ToUpper
