@@ -11,6 +11,7 @@ import {
 } from './components';
 
 import {
+  StatusPipe
 } from './pipes';
 
 const BASE_MODULES = [CommonModule, RouterModule, FormsModule, ReactiveFormsModule];
@@ -23,6 +24,7 @@ const COMPONENTS = [
 ];
 
 const PIPES = [
+  StatusPipe
 ];
 
 @NgModule({

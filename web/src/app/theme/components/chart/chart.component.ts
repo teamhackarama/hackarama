@@ -46,7 +46,10 @@ export class ChartComponent implements OnInit, OnDestroy {
                             barThickness: 10
                         }],
                         yAxes: [{
-                            display: false
+                            display: false,
+                            ticks: {
+                                beginAtZero:true
+                            }
                         }]
                     }
                 }

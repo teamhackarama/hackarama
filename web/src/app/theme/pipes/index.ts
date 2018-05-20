@@ -1,1 +1,2 @@
 // Pipes
+export * from './StatusPipe';
