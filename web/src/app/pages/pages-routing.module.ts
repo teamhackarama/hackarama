@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { SummaryComponent } from './summary/summary.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,6 +13,14 @@ const routes: Routes = [{
     {
       path: 'summary',
       component: SummaryComponent,
+    },
+    {
+      path: 'timeline',
+      component: TimelineComponent,
+    },
+    {
+      path: 'feedback',
+      component: FeedbackComponent,
     },
     {
       path: '',
