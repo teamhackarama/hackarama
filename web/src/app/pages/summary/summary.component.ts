@@ -13,14 +13,13 @@ export class SummaryComponent implements AfterViewInit {
   public chartPositiveData: ChartData = {};
   public chartNegativeData: ChartData = {};
   public results: Result[];
+  public resultsTitle = 'Total';
 
   @ViewChild(ChartComponent) private chartTotal: ChartComponent;
 
   @ViewChild(ChartComponent) private chartPositive: ChartComponent;
 
   @ViewChild(ChartComponent) private chartNegative: ChartComponent;
-
-
 
   private _gradientStopValue = 0.4;
   private _positiveData: Result[] = [];
@@ -128,10 +127,25 @@ export class SummaryComponent implements AfterViewInit {
       });
 
       this.results = this._totalData;
-      
+
       this.setupTotalData(this._totalData);
       this.setupPositiveData(this._positiveData);
       this.setupNegativeData(this._negativeData);
     });
+  }
+
+  public renderChart(type: string) {
+    switch(type) {
+      case 'Positive':
+        this.results = this._positiveData;
+        break;
+      case 'Negative': 
+        this.results = this._negativeData;
+        break;
+      default:
+        this.results = this._totalData;
+        break;
+    }
+    this.resultsTitle = type;
   }
 }
