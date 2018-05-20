@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { ApiService, Result } from "../../core/services/api.service";
 import { HttpParams } from "@angular/common/http";
 import { ChartData } from "chart.js";
-import { ChartComponent } from "../../theme/components";
+import { ChartComponent, WordCloudData, WordCloudComponent } from "../../theme/components";
 
 @Component({
   templateUrl: "./summary.component.html",
@@ -14,6 +14,22 @@ export class SummaryComponent implements AfterViewInit {
   public chartNegativeData: ChartData = {};
   public results: Result[];
   public resultsTitle = 'Total';
+  public wordCloudData: WordCloudData[] = [];
+  public wordCloudOptions = {
+    settings: {
+      minFontSize: 10,
+      maxFontSize: 100,
+    },
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    labels: true // false to hide hover labels
+  };
+
+  @ViewChild(WordCloudComponent) private wordcloud: WordCloudComponent;
 
   @ViewChild(ChartComponent) private chartTotal: ChartComponent;
 
@@ -131,6 +147,28 @@ export class SummaryComponent implements AfterViewInit {
       this.setupTotalData(this._totalData);
       this.setupPositiveData(this._positiveData);
       this.setupNegativeData(this._negativeData);
+
+      let wordMap = {};
+      this._totalData.forEach(data => {
+        let words = data.text.split(' ');
+        words.forEach(word => {
+          if (wordMap[word]) {
+            wordMap[word]++;
+          }
+          else {
+            wordMap[word] = 1;
+          }
+        });
+      });
+
+      Object.keys(wordMap).forEach(word => {
+        this.wordCloudData.push({
+          text: word,
+          size: wordMap[word] * 100
+        });
+      });
+
+      this.wordcloud.update();
     });
   }
 

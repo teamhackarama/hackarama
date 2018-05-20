@@ -7,7 +7,8 @@ import {
   FooterComponent,
   HeaderComponent,
   LayoutComponent,
-  ChartComponent
+  ChartComponent,
+  WordCloudComponent
 } from './components';
 
 import {
@@ -20,7 +21,8 @@ const COMPONENTS = [
   HeaderComponent,
   FooterComponent,
   LayoutComponent,
-  ChartComponent  
+  ChartComponent,
+  WordCloudComponent
 ];
 
 const PIPES = [
