@@ -93,8 +93,8 @@ def process_feedback(intent, session):
 
 
 def persist_feedback(feedbackTarget, feedbackItem):
-    print("Received Feedback from '" + feedbackTarget + "' about '" + feedbackItem + "'")
     feedbackObj = json.dumps({"target" : feedbackTarget, "item": feedbackItem})
+    print("Sending payload '" + feedbackObj + "'")
     invoke_response = lambda_client.invoke(FunctionName="SentimentFunction",
        InvocationType='Event',
        Payload=feedbackObj)
