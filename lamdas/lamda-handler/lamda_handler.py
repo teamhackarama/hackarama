@@ -1,4 +1,7 @@
 from __future__ import print_function
+import boto3
+import json
+lambda_client = boto3.client('lambda')
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -80,12 +83,23 @@ def process_feedback(intent, session):
         return build_response(session_attributes, build_speechlet_response(
             card_title, speech_output, reprompt_text, should_end_session))
 
+    persist_feedback(feedbackTargetValue, feedbackItemValue)
+
     should_end_session = True
     speech_output = "Thanks for giving feedback on " + feedbackTargetValue
     reprompt_text = "I didn't understand which company you are giving feedback on"
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+
+def persist_feedback(feedbackTarget, feedbackItem):
+    print("Received Feedback from '" + feedbackTarget + "' about '" + feedbackItem + "'")
+    feedbackObj = json.dumps({"target" : feedbackTarget, "item": feedbackItem})
+    invoke_response = lambda_client.invoke(FunctionName="SentimentFunction",
+       InvocationType='Event',
+       Payload=feedbackObj)
+    response = invoke_response['Payload'].read()
+    print ("Response from server received '" +  response + "'")
 
 # --------------- Events ------------------
 
