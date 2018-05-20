@@ -1,0 +1,17 @@
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/xunit.runner.reporters.netcoreapp10.dll
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/xunit.runner.utility.netcoreapp10.dll
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/SentimentFunction.Tests.deps.json
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/SentimentFunction.Tests.runtimeconfig.json
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/SentimentFunction.Tests.runtimeconfig.dev.json
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/SentimentFunction.Tests.dll
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/SentimentFunction.Tests.pdb
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/SentimentFunction.dll
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/bin/Debug/netcoreapp2.0/SentimentFunction.pdb
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/obj/Debug/netcoreapp2.0/SentimentFunction.Tests.csprojAssemblyReference.cache
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/obj/Debug/netcoreapp2.0/SentimentFunction.Tests.csproj.CoreCompileInputs.cache
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/obj/Debug/netcoreapp2.0/SentimentFunction.Tests.AssemblyInfoInputs.cache
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/obj/Debug/netcoreapp2.0/SentimentFunction.Tests.AssemblyInfo.cs
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/obj/Debug/netcoreapp2.0/SentimentFunction.Tests.csproj.CopyComplete
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/obj/Debug/netcoreapp2.0/SentimentFunction.Tests.dll
+/home/mjohnst/src/SentimentFunction/test/SentimentFunction.Tests/obj/Debug/netcoreapp2.0/SentimentFunction.Tests.pdb
