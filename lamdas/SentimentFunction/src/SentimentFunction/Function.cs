@@ -44,7 +44,7 @@ namespace SentimentFunction
         /// <returns></returns>
         public string FunctionHandler(JObject jObjectInput, ILambdaContext context)
         {
-            string input = jObjectInput["input"].ToObject<string>();
+            string input = jObjectInput["item"].ToObject<string>();
             PredictionModel<SentimentData, SentimentPrediction> model =
                 PredictionModel.ReadAsync<SentimentData, SentimentPrediction>(modelPath).Result;
 
