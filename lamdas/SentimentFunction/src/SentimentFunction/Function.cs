@@ -10,6 +10,7 @@ using Microsoft.ML.Runtime.Api;
 using Microsoft.ML;
 using System.Net.Http;
 using System.Text;
+using System.Collections.Generic;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -55,14 +56,18 @@ namespace SentimentFunction
             DynamoDbSchema schematizedPrediction = new DynamoDbSchema
             {
                 Feedback = input,
-                Date = DateTime.UtcNow.ToString("MM/dd/yy"),
+                Date = DateTime.UtcNow.ToString("MM/dd/yyyy"),
                 Sentiment = prediction.Sentiment ? "positive" : "negative"
             };
 
             string serializedPrediction = JsonConvert.SerializeObject(schematizedPrediction);
             string response = PostPredictionViaHttp(serializedPrediction);
 
-            return response;
+            return JsonConvert.SerializeObject(new Dictionary<string, string>
+            {
+                { "dynamoPayload", serializedPrediction },
+                { "dynamoResponse", response }
+            });
             // return PostPredicitionViaInvokeRequest(serializedPrediction);
         }
 
