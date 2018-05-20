@@ -88,13 +88,7 @@ export class SummaryComponent implements AfterViewInit {
 
   private sortCollection(data: Result[]) {
     return data.sort((a, b) => {
-      if(a.date > b.date) {
-        return -1;
-      }
-      if (a.date < b.date) {
-        return 1;
-      }
-      return 0;
+      return <any>new Date(b.date) - <any> new Date(a.date) || <any>b.timestamp - <any>a.timestamp;
     });
   }
 

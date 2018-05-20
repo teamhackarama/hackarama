@@ -13,6 +13,7 @@ interface DynamoDbItem {
   FeedbackSentiment: DynamoDbField;
   FeedbackLocation: DynamoDbField;
   FeedbackText: DynamoDbField;
+  Timestamp: DynamoDbField;
 }
 
 export interface Result {
@@ -21,6 +22,7 @@ export interface Result {
   sentiment: boolean;
   location: string;
   text: string;
+  timestamp: string;
 }
 
 @Injectable({
@@ -42,7 +44,8 @@ export class ApiService {
               id: r.FeedbackId.S,
               sentiment: r.FeedbackSentiment.S === 'positive',
               location: r.FeedbackLocation.S,
-              text: r.FeedbackText.S
+              text: r.FeedbackText.S,
+              timestamp: r.Timestamp.S
             }
           });
         }),
