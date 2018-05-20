@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 
 import { ThemeModule } from '../../theme/theme.module';
 
-import { DashboardComponent } from './dashboard.component';
+import { SummaryComponent } from './summary.component';
 
 @NgModule({
   imports: [
     ThemeModule
   ],
   declarations: [
-    DashboardComponent,
+    SummaryComponent,
   ],
 })
-export class DashboardModule { }
+export class SummaryModule { }
