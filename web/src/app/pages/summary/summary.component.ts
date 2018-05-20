@@ -61,30 +61,7 @@ export class SummaryComponent implements AfterViewInit {
     })
   }
 
-  private setupGraph(data: Result[]) {
-
-  }
-
-  private setupTotalData(data: Result[]) {
-    var buckets = this.bucketizeDates(data);
-
-    var gradient = this.chartTotal.context.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(this._gradientStopValue, "#ffffff");
-    gradient.addColorStop(0, "#6fdeff");
-
-    this.chartTotalData = {
-      labels: new Array(buckets.length),
-      datasets: [
-        {
-          data: buckets,
-          borderWidth: 0,
-          backgroundColor: gradient
-        }
-      ]
-    };
-  }
-
-  private setupPositiveData(data: Result[]) {
+  private setupGraph(data: Result[], color: string) {
     var buckets = this.bucketizeDates(data);
     var gradientPositive = this.chartPositive.context.createLinearGradient(
       0,
@@ -93,38 +70,15 @@ export class SummaryComponent implements AfterViewInit {
       400
     );
     gradientPositive.addColorStop(this._gradientStopValue, "#ffffff");
-    gradientPositive.addColorStop(0, "#74ffbc");
+    gradientPositive.addColorStop(0, color);
 
-    this.chartPositiveData = {
+    return {
       labels: new Array(buckets.length),
       datasets: [
         {
           data: buckets,
           borderWidth: 0,
           backgroundColor: gradientPositive
-        }
-      ]
-    };
-  }
-
-  private setupNegativeData(data: Result[]) {
-    var buckets = this.bucketizeDates(data);
-    var gradientNegative = this.chartPositive.context.createLinearGradient(
-      0,
-      0,
-      0,
-      400
-    );
-    gradientNegative.addColorStop(this._gradientStopValue, "#ffffff");
-    gradientNegative.addColorStop(0, "#ff4848");
-
-    this.chartNegativeData = {
-      labels: new Array(buckets.length),
-      datasets: [
-        {
-          data: buckets,
-          borderWidth: 0,
-          backgroundColor: gradientNegative
         }
       ]
     };
@@ -144,9 +98,9 @@ export class SummaryComponent implements AfterViewInit {
 
       this.results = this._totalData;
 
-      this.setupTotalData(this._totalData);
-      this.setupPositiveData(this._positiveData);
-      this.setupNegativeData(this._negativeData);
+      this.chartTotalData = this.setupGraph(this._totalData, '#6fdeff');
+      this.chartPositiveData = this.setupGraph(this._positiveData, '#74ffbc');
+      this.chartNegativeData = this.setupGraph(this._negativeData, '#ff4848');
 
       let wordMap = {};
       this._totalData.forEach(data => {
