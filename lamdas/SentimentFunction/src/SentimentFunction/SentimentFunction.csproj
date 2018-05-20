@@ -15,4 +15,10 @@
     <DotNetCliToolReference Include="Amazon.Lambda.Tools" Version="2.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="models\imdb_trained">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
