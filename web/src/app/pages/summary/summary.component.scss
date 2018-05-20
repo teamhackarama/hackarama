@@ -10,22 +10,27 @@
     color: #909090;
 }
 
-.graph .card {
+.specialCard {
     border: 5px solid transparent;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.graph .card {
     cursor: pointer;
 }
 
-.card.graphTotal:hover {
+.graph .card:hover {
     background-color: #eee;
-    border-color: #6fdeff;
 }
 
-.card.graphPositive:hover {
-    background-color: #eee;
-    border-color: #74ffbc;
+.graphCount, .graphPercentage {
+    margin-left: 4px;
 }
 
-.card.graphNegative:hover {
-    background-color: #eee;
-    border-color: #ff4848;
+.arrowUp {
+    color: #3cc480;
+}
+
+.arrowDown {
+    color: #ff4141;
 }

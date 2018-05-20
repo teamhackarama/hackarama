@@ -25,12 +25,10 @@ export class WordCloudComponent implements OnInit {
 
   @Input()
   color: string[] = [
-    "#2BAAE2",
-    "#FF6B8D",
-    "#cecece",
-    "#003E5D",
-    "#22BAA0",
-    "#cecece"
+    "#ff4141",
+    "#3cc480",
+    "#55d8fe",
+    "#4d4f5c"
   ];
 
   @Input() options: WordCloudOptions;
