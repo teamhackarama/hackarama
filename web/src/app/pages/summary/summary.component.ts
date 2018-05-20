@@ -3,6 +3,8 @@ import { ApiService, Result } from "../../core/services/api.service";
 import { HttpParams } from "@angular/common/http";
 import { ChartData } from "chart.js";
 import { ChartComponent, WordCloudData, WordCloudComponent } from "../../theme/components";
+import { clean } from "./stopwards"
+
 
 @Component({
   templateUrl: "./summary.component.html",
@@ -38,9 +40,9 @@ export class SummaryComponent implements AfterViewInit {
   @ViewChild(ChartComponent) private chartNegative: ChartComponent;
 
   private _gradientStopValue = 0.4;
-  private _positiveData: Result[] = [];
-  private _negativeData: Result[] = [];
-  private _totalData: Result[] = [];
+  public positiveData: Result[] = [];
+  public negativeData: Result[] = [];
+  public totalData: Result[] = [];
 
   constructor(private apiService: ApiService) {}
 
@@ -84,60 +86,80 @@ export class SummaryComponent implements AfterViewInit {
     };
   }
 
+  private sortCollection(data: Result[]) {
+    return data.sort((a, b) => {
+      if(a.date > b.date) {
+        return -1;
+      }
+      if (a.date < b.date) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   ngAfterViewInit(): void {
 
     this.apiService.get().subscribe(results => {
-      this._totalData = results;
+      this.totalData = results;
       results.forEach(result => {
         if (result.sentiment) {
-          this._positiveData.push(result);
+          this.positiveData.push(result);
         } else {
-          this._negativeData.push(result);
+          this.negativeData.push(result);
         }
       });
 
-      this.results = this._totalData;
+      this.totalData = this.sortCollection(this.totalData);
+      this.positiveData = this.sortCollection(this.positiveData);
+      this.negativeData = this.sortCollection(this.negativeData);
 
-      this.chartTotalData = this.setupGraph(this._totalData, '#6fdeff');
-      this.chartPositiveData = this.setupGraph(this._positiveData, '#74ffbc');
-      this.chartNegativeData = this.setupGraph(this._negativeData, '#ff4848');
+      this.chartTotalData = this.setupGraph(this.totalData, '#6fdeff');
+      this.chartPositiveData = this.setupGraph(this.positiveData, '#74ffbc');
+      this.chartNegativeData = this.setupGraph(this.negativeData, '#ff4848');
 
-      let wordMap = {};
-      this._totalData.forEach(data => {
-        let words = data.text.split(' ');
-        words.forEach(word => {
-          if (wordMap[word]) {
-            wordMap[word]++;
-          }
-          else {
-            wordMap[word] = 1;
-          }
-        });
-      });
-
-      Object.keys(wordMap).forEach(word => {
-        this.wordCloudData.push({
-          text: word,
-          size: wordMap[word] * 100
-        });
-      });
-
-      this.wordcloud.update();
+      this.renderChart('Total');
     });
+  }
+
+  private updateWordcloud(results: Result[]) {
+    let wordMap = {};
+    this.wordCloudData = [];
+    results.forEach(data => {
+      let words = clean(data.text).split(' ');
+      words.forEach(word => {
+        if (wordMap[word]) {
+          wordMap[word]++;
+        }
+        else {
+          wordMap[word] = 1;
+        }
+      });
+    });
+
+    Object.keys(wordMap).forEach(word => {
+      this.wordCloudData.push({
+        text: word,
+        size: wordMap[word] * 100
+      });
+    });
+    this.wordcloud.wordData = this.wordCloudData;
+    this.wordcloud.update();
   }
 
   public renderChart(type: string) {
     switch(type) {
       case 'Positive':
-        this.results = this._positiveData;
+        this.results = this.positiveData;
         break;
       case 'Negative': 
-        this.results = this._negativeData;
+        this.results = this.negativeData;
         break;
       default:
-        this.results = this._totalData;
+        this.results = this.totalData;
         break;
     }
     this.resultsTitle = type;
+    this.updateWordcloud(this.results);
   }
 }
