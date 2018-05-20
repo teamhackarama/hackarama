@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
 import {
   FooterComponent,
   HeaderComponent,
-  LayoutComponent
+  LayoutComponent,
+  ChartComponent
 } from './components';
 
 import {
@@ -17,7 +18,8 @@ const BASE_MODULES = [CommonModule, RouterModule, FormsModule, ReactiveFormsModu
 const COMPONENTS = [
   HeaderComponent,
   FooterComponent,
-  LayoutComponent
+  LayoutComponent,
+  ChartComponent  
 ];
 
 const PIPES = [
