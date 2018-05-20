@@ -18,3 +18,8 @@ Live Working Demo
 -----
 - *Dashboard*: http://flashfeedback.simplify.claims
 - *Alexa Skill*: [FlashFeedback](https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dalexa-skills&field-keywords=FlashFeedback)
+
+Screenshots
+------
+![dashboard](https://github.com/teamhackarama/hackarama/raw/master/screenshots/dashboard.png "Dashboard")
+![alexa](https://github.com/teamhackarama/hackarama/raw/master/screenshots/alexa.png "Alexa")
